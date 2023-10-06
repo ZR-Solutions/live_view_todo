@@ -1,0 +1,70 @@
+<style>
+    .btn{
+        background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 10px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 12px;
+  margin: 4px 2px;
+  cursor: pointer;
+    }
+    input[type=text]{
+        width: 100%;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  background-color: white; 
+  padding: 10px 0px 10px 10px;
+    }
+
+table, tr, td{
+    font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: max-content;
+  border: 1px solid #111010;
+  padding: 8px;
+}
+th{
+    width: max-content;
+    padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #15b5d1;
+  color: white;
+  border: 1px solid #111010;
+}
+</style>
+<form action="#" phx-submit="add">
+<%= text_input :employee, :name, placeholder: "Name of employee" %> <br>
+<%= text_input :employee, :location, placeholder: "Location of employee" %>
+<%= submit "Add", class: "btn", phx_disable_with: "Adding..."%>
+</form>
+
+
+<table>
+    <tr><th>Employee Name</th><th>Location</th></tr>
+
+<%= for employee <- @employees do %>
+
+    <div>
+        <tr>
+            
+            <td><%= employee.name %></td>
+            <td><%= employee.location %></td>
+        <td>
+        <button phx-click="toggle_delete" phx-value-id={employee.id}>
+        Delete</button>
+        </td>
+        <td>
+            <button phx-click="toggle_update" phx-value-id={employee.id}>
+            Edit</button>
+            </td>
+        </tr>
+        
+    </div>
+<% end %>
+</table>
