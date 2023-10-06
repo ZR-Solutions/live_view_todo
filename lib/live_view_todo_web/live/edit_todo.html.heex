@@ -1,0 +1,9 @@
+<h1>Selected Employee</h1>
+<.form :let={f} for={@changeset} phx-change="validate" phx-submit="save" %>
+  <label for="Name">Name</label>
+  <%= text_input(f, :name, placeholder: "Name") %> <br />
+  <label for="Location">Location</label>
+  <%= text_input(f, :location, placeholder: "Location") %> <br />
+
+  <%= submit("Save Employe", class: "btn") %>
+</.form>

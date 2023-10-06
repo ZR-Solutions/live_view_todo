@@ -2,9 +2,6 @@ defmodule LiveViewTodoWeb.TodoLive do
   use LiveViewTodoWeb, :live_view
   alias LiveViewTodo.Todos
   import Phoenix.HTML.Form
-  # import Phoenix.LiveView.Helpers
-
-
 
   def mount(_params, _session, socket) do
     Todos.subscribe()
@@ -16,7 +13,6 @@ defmodule LiveViewTodoWeb.TodoLive do
 
     {:noreply, socket}
     # {:noreply, fetch(socket)}
-
   end
 
   def handle_event("toggle_delete", %{"id" => id}, socket) do
@@ -32,21 +28,13 @@ defmodule LiveViewTodoWeb.TodoLive do
     # Todos.update_employee(employee, params)
     socket = assign(socket, editable?: true)
     {:noreply, socket}
-
   end
-
 
   def handle_info({Todos, [:employee | _], _}, socket) do
     {:noreply, fetch(socket)}
-
-
   end
 
   defp fetch(socket) do
     assign(socket, employees: Todos.list_employees(), editable?: false)
   end
-
-  # def render(assigns) do
-  #   ~L"Rendering LiveView"
-  # end
 end

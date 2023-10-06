@@ -18,7 +18,8 @@ defmodule LiveViewTodoWeb.Router do
     pipe_through :browser
 
     # get "/", PageController, :home
-    live "/", TodoLive, :index
+    live "/", TodoLive, as: :index
+    live "/edit/:id", EditTodo, as: :edit_todo
   end
 
   # Other scopes may use custom stacks.
